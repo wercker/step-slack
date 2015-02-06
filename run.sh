@@ -16,7 +16,7 @@ if [[ $WERCKER_SLACK_NOTIFY_CHANNEL == \#* ]]; then
 fi
 
 # if no username is provided use the default - werckerbot
-if [ ! -n "$WERCKER_SLACK_POST_USERNAME" ]; then
+if [ ! -n "$WERCKER_SLACK_USERNAME" ]; then
   export WERCKER_SLACK_USERNAME=werckerbot
 fi
 
@@ -26,23 +26,22 @@ if [ ! -n "$WERCKER_SLACK_ICON_URL" ]; then
 fi
 
 # check if this event is a build or deploy
-if [ ! -n "$DEPLOY"]; then
+if [-n "$BUILD"]; then
     # its a build!
     export ACTION="build"
     export ACTION_URL=$WERCKER_BUILD_URL
-else
+elif [-n "$DEPLOY"]; then
     # its a deploy!
     export ACTION="deploy"
     export ACTION_URL=$WERCKER_DEPLOY_URL
 fi
 
-# build for sentcli by mies has failed on branch master
 export MESSAGE="$ACTION for $WERCKER_APPLICATION_NAME by $WERCKER_STARTED_BY has $WERCKER_RESULT on branch $WERCKER_GIT_BRANCH"
 
 # construct the json
 json="{
     \"channel\": \"$WERCKER_SLACK_NOTIFY_CHANNEL\",
-    \"username\": \"$WERCKER_SLACK_POST_USERNAME\",
+    \"username\": \"$WERCKER_SLACK_USERNAME\",
     \"text\":\"$MESSAGE\",
     \"icon_url\":\"$WERCKER_SLACK_ICON_URL\"
 }"
