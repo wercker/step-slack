@@ -1,5 +1,5 @@
 name: slack-notifier
-version: 0.0.4
+version: 0.0.6
 description: Posts wercker build/deploy status to a Slack channel.
 keywords:
   - notification
@@ -15,6 +15,9 @@ properties:
   username:
     type: string
     required: false
+  notify_on:
+      type: string
+      required: false
   icon_url:
     type: string
     required: false
