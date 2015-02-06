@@ -47,7 +47,7 @@ json="{
 }"
 
 # skip notifications if not interested in passed builds or deploys
-if [ "$NOTIFY_ON" = "failed" ]; then
+if [ "$SLACK_NOTIFIER_NOTIFY_ON" = "failed" ]; then
 	if [ "$WERCKER_RESULT" = "passed" ]; then
 		return 0
 	fi
