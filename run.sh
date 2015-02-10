@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # check if slack webhook url is present
-if [ ! -n "WERCKER_SLACK_URL" ]; then
+if [ ! -n "WERCKER_SLACK_NOTIFIER_URL" ]; then
     error "Please provide a Slack webhook URL"
 fi
 
