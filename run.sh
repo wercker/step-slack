@@ -54,4 +54,4 @@ if [ "$WERCKER_SLACK_NOTIFIER_NOTIFY_ON" = "failed" ]; then
 fi
 
 # post the result to the slack webhook
-RESULT=`curl -d "payload=$json" -s "$SLACK_URL" --output $WERCKER_STEP_TEMP/result.txt -w "%{http_code}"`
+RESULT=`curl -d "payload=$json" -s "$WERCKER_SLACK_NOTIFIER_URL" --output $WERCKER_STEP_TEMP/result.txt -w "%{http_code}"`
