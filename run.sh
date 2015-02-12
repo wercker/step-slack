@@ -55,6 +55,7 @@ fi
 
 # post the result to the slack webhook
 RESULT=`curl -d "payload=$json" -s "$WERCKER_SLACK_NOTIFIER_URL" --output $WERCKER_STEP_TEMP/result.txt -w "%{http_code}"`
+cat $WERCKER_STEP_TEMP/result.txt
 
 if [ "$RESULT" = "500" ]; then
   if grep -Fqx "No token" $WERCKER_STEP_TEMP/result.txt; then
