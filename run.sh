@@ -40,7 +40,7 @@ export MESSAGE="$ACTION for $WERCKER_APPLICATION_NAME by $WERCKER_STARTED_BY has
 
 # construct the json
 json="{
-    \"channel\": \"$WERCKER_SLACK_NOTIFIER_CHANNEL\",
+    \"channel\": \"#$WERCKER_SLACK_NOTIFIER_CHANNEL\",
     \"username\": \"$WERCKER_SLACK_NOTIFIER_USERNAME\",
     \"text\":\"$MESSAGE\",
     \"icon_url\":\"$WERCKER_SLACK_NOTIFIER_ICON_URL\"
