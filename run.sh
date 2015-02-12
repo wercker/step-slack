@@ -66,6 +66,7 @@ if [ "$RESULT" = "500" ]; then
   fi
 
   if grep -Fqx "Invalid channel specified" $WERCKER_STEP_TEMP/result.txt; then
+      cat $WERCKER_STEP_TEMP/result.txt
     fail "Could not find specified channel for subdomain/token."
   fi
 
