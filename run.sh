@@ -36,15 +36,30 @@ elif [ -n "$DEPLOY" ]; then
     export ACTION_URL=$WERCKER_DEPLOY_URL
 fi
 
-export MESSAGE="$ACTION for $WERCKER_APPLICATION_NAME by $WERCKER_STARTED_BY has $WERCKER_RESULT on branch $WERCKER_GIT_BRANCH"
+export MESSAGE="<$ACTION_URL|$ACTION> for $WERCKER_APPLICATION_NAME by $WERCKER_STARTED_BY has $WERCKER_RESULT on branch $WERCKER_GIT_BRANCH"
+export FALLBACK="$ACTION for $WERCKER_APPLICATION_NAME by $WERCKER_STARTED_BY has $WERCKER_RESULT on branch $WERCKER_GIT_BRANCH"
+export COLOR="good"
+
+if [ "$WERCKER_RESULT" = "failed" ]; then
+  export MESSAGE="$MESSAGE at step: $WERCKER_FAILED_STEP_DISPLAY_NAME"
+  export FALLBACK="$FALLBACK at step: $WERCKER_FAILED_STEP_DISPLAY_NAME"
+  export COLOR="danger"
+fi
 
 # construct the json
 json="{
     \"channel\": \"#$WERCKER_SLACK_NOTIFIER_CHANNEL\",
     \"username\": \"$WERCKER_SLACK_NOTIFIER_USERNAME\",
-    \"text\":\"$MESSAGE\",
-    \"icon_url\":\"$WERCKER_SLACK_NOTIFIER_ICON_URL\"
+    \"icon_url\":\"$WERCKER_SLACK_NOTIFIER_ICON_URL\",
+    \"attachments\":[
+      {
+        \"fallback\": \"$FALLBACK\",
+        \"text\": \"$MESSAGE\",
+        \"color\": \"$COLOR\"
+      }
+    ]
 }"
+
 
 # skip notifications if not interested in passed builds or deploys
 if [ "$WERCKER_SLACK_NOTIFIER_NOTIFY_ON" = "failed" ]; then
