@@ -26,14 +26,14 @@ if [ ! -n "$WERCKER_SLACK_NOTIFIER_ICON_URL" ]; then
 fi
 
 # check if this event is a build or deploy
-if [ -n "$BUILD" ]; then
-    # its a build!
-    export ACTION="build"
-    export ACTION_URL=$WERCKER_BUILD_URL
-elif [ -n "$DEPLOY" ]; then
+if [ -n "$DEPLOY" ]; then
     # its a deploy!
     export ACTION="deploy"
     export ACTION_URL=$WERCKER_DEPLOY_URL
+else
+    # its a build!
+    export ACTION="build"
+    export ACTION_URL=$WERCKER_BUILD_URL
 fi
 
 export MESSAGE="<$ACTION_URL|$ACTION> for $WERCKER_APPLICATION_NAME by $WERCKER_STARTED_BY has $WERCKER_RESULT on branch $WERCKER_GIT_BRANCH"
