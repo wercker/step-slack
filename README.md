@@ -17,14 +17,13 @@ section (or both) with the following contents:
             username: myamazingbotname
 ```
 
-Where `$SLACK_URL` is a Slack webhook url (see the integrations page to
+Where `$SLACK_URL` is a Slack webhook url (see the Slack integrations page to
 set one up)
 
 ## Other optional fields
 
 ```yaml
-icon_url: # a url that specifies an image to use as the avatar icon
-within slack
+icon_url: # a url that specifies an image to use as the avatar icon in Slack
 notify_on: "failed" # just notify on failed builds or deploys
 ```
 
