@@ -1,15 +1,23 @@
 # step-slack
 
-A slack notifier written in `bash`.
+A slack notifier written in `bash` and `curl`. Make sure you create a Slack
+webhook first (see the Slack integrations page to set one up).
 
 [![wercker status](https://app.wercker.com/status/94f767fe85199d1f7f2dd064f36802bb/s "wercker status")](https://app.wercker.com/project/bykey/94f767fe85199d1f7f2dd064f36802bb)
 
-## Usage
+# Options
 
-In your `wercker.yml` file add an afterstep in your build or deploy
-section (or both) with the following contents:
+- `url` The Slack webhook url
+- `channel` The Slack channel
+- `username` Username of the notification message
+- `icon_url` (optional) A url that specifies an image to use as the avatar icon in Slack
+- `notify_on` (optional) If set to `failed`, it will only notify on failed
+builds or deploys.
+
+# Example
 
 ```yaml
+build:
     after-steps:
         - slack-notifier:
             url: $SLACK_URL
@@ -17,14 +25,12 @@ section (or both) with the following contents:
             username: myamazingbotname
 ```
 
-Where `$SLACK_URL` is a Slack webhook url (see the Slack integrations page to
-set one up)
+# License
 
-## Other optional fields
+The MIT License (MIT)
 
-```yaml
-icon_url: # a url that specifies an image to use as the avatar icon in Slack
-notify_on: "failed" # just notify on failed builds or deploys
-```
+# Changelog
 
+## 1.0.0
 
+- Initial release
