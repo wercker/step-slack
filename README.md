@@ -25,6 +25,13 @@ build:
             username: myamazingbotname
 ```
 
+The `url` parameter is the [slack webhook](https://api.slack.com/incoming-webhooks) that wercker should post to.
+You can create an *incoming webhook* on your slack integration page.
+This url is then exposed as an environment variable (in this case
+`$SLACK_URL`) that you create through the wercker web interface as *deploy pipeline variable*.
+
+
+
 # License
 
 The MIT License (MIT)
