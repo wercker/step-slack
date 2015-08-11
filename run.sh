@@ -1,13 +1,9 @@
 #!/bin/bash
+#source build-esen.sh
 
 # check if slack webhook url is present
 if [ -z "$WERCKER_SLACK_NOTIFIER_URL" ]; then
   fail "Please provide a Slack webhook URL"
-fi
-
-# get the channel name to post notifications to
-if [ -z "$WERCKER_SLACK_NOTIFIER_CHANNEL" ]; then
-  fail "Please provide a Slack channel to push notifications to"
 fi
 
 # check if a '#' was supplied in the channel name
@@ -47,8 +43,14 @@ if [ "$WERCKER_RESULT" = "failed" ]; then
 fi
 
 # construct the json
-json="{
-    \"channel\": \"#$WERCKER_SLACK_NOTIFIER_CHANNEL\",
+json="{"
+
+# channels are optional, dont send one if it wasnt specified
+if [ -n "$WERCKER_SLACK_NOTIFIER_CHANNEL" ]; then 
+    json=$json"\"channel\": \"#$WERCKER_SLACK_NOTIFIER_CHANNEL\","
+fi
+
+json=$json"
     \"username\": \"$WERCKER_SLACK_NOTIFIER_USERNAME\",
     \"icon_url\":\"$WERCKER_SLACK_NOTIFIER_ICON_URL\",
     \"attachments\":[
@@ -59,7 +61,6 @@ json="{
       }
     ]
 }"
-
 
 # skip notifications if not interested in passed builds or deploys
 if [ "$WERCKER_SLACK_NOTIFIER_NOTIFY_ON" = "failed" ]; then
