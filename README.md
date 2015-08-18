@@ -8,8 +8,8 @@ webhook first (see the Slack integrations page to set one up).
 # Options
 
 - `url` The Slack webhook url
-- `channel` The Slack channel
 - `username` Username of the notification message
+- `channel` (optional) The Slack channel (excluding `#`)
 - `icon_url` (optional) A url that specifies an image to use as the avatar icon in Slack
 - `notify_on` (optional) If set to `failed`, it will only notify on failed
 builds or deploys.
@@ -30,13 +30,15 @@ You can create an *incoming webhook* on your slack integration page.
 This url is then exposed as an environment variable (in this case
 `$SLACK_URL`) that you create through the wercker web interface as *deploy pipeline variable*.
 
-
-
 # License
 
 The MIT License (MIT)
 
 # Changelog
+
+## 1.1.0
+
+- `channel` is now optional (wercker/step-slack#5)
 
 ## 1.0.0
 
