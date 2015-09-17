@@ -21,3 +21,6 @@ properties:
   icon_url:
     type: string
     required: false
+  branch:
+    type: string
+    required: false

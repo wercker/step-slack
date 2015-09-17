@@ -13,6 +13,8 @@ webhook first (see the Slack integrations page to set one up).
 - `icon_url` (optional) A url that specifies an image to use as the avatar icon in Slack
 - `notify_on` (optional) If set to `failed`, it will only notify on failed
 builds or deploys.
+- `branch` (optional) If set, it will only notify on the given branch
+
 
 # Example
 
@@ -23,6 +25,7 @@ build:
             url: $SLACK_URL
             channel: notifications
             username: myamazingbotname
+            branch: master
 ```
 
 The `url` parameter is the [slack webhook](https://api.slack.com/incoming-webhooks) that wercker should post to.
@@ -35,6 +38,10 @@ This url is then exposed as an environment variable (in this case
 The MIT License (MIT)
 
 # Changelog
+
+## 1.2.0
+
+- added `branch` option
 
 ## 1.1.0
 
