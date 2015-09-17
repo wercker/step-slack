@@ -69,6 +69,13 @@ if [ "$WERCKER_SLACK_NOTIFIER_NOTIFY_ON" = "failed" ]; then
 	fi
 fi
 
+# skip notifications if not on the right branch
+if [ -n "$WERCKER_SLACK_NOTIFIER_BRANCH" ]; then
+    if [ "$WERCKER_SLACK_NOTIFIER_BRANCH" -ne "$WERCKER_GIT_BRANCH" ]; then
+        return 0
+    fi
+fi
+
 # post the result to the slack webhook
 RESULT=$(curl -d "payload=$json" -s "$WERCKER_SLACK_NOTIFIER_URL" --output "$WERCKER_STEP_TEMP"/result.txt -w "%{http_code}")
 cat "$WERCKER_STEP_TEMP/result.txt"
