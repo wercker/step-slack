@@ -71,7 +71,7 @@ fi
 
 # skip notifications if not on the right branch
 if [ -n "$WERCKER_SLACK_NOTIFIER_BRANCH" ]; then
-    if [ "$WERCKER_SLACK_NOTIFIER_BRANCH" -ne "$WERCKER_GIT_BRANCH" ]; then
+    if [ "$WERCKER_SLACK_NOTIFIER_BRANCH" != "$WERCKER_GIT_BRANCH" ]; then
         return 0
     fi
 fi
