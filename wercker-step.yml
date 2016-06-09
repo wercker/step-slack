@@ -24,3 +24,6 @@ properties:
   branch:
     type: string
     required: false
+  icon_emoji:
+    type: string
+    required: false
