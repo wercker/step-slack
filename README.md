@@ -11,6 +11,7 @@ webhook first (see the Slack integrations page to set one up).
 - `username` Username of the notification message
 - `channel` (optional) The Slack channel (excluding `#`)
 - `icon_url` (optional) A url that specifies an image to use as the avatar icon in Slack
+- `icon_emoji` (optional) An emoji that specifies the image to use as the avatar icon in Slack
 - `notify_on` (optional) If set to `failed`, it will only notify on failed
 builds or deploys.
 - `branch` (optional) If set, it will only notify on the given branch
