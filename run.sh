@@ -17,7 +17,7 @@ if [ -z "$WERCKER_SLACK_NOTIFIER_USERNAME" ]; then
 fi
 
 # if no icon-url is provided for the bot use the default wercker icon
-if [ -z "$WERCKER_SLACK_NOTIFIER_ICON_URL" ]; then
+if [ -z "$WERCKER_SLACK_NOTIFIER_ICON_URL" ] && [ -z "$WERCKER_SLACK_NOTIFIER_ICON_EMOJI" ]; then
   export WERCKER_SLACK_NOTIFIER_ICON_URL="https://secure.gravatar.com/avatar/a08fc43441db4c2df2cef96e0cc8c045?s=140"
 fi
 
@@ -32,7 +32,8 @@ else
   export ACTION_URL=$WERCKER_BUILD_URL
 fi
 
-export MESSAGE="<$ACTION_URL|$ACTION> for $WERCKER_APPLICATION_NAME by $WERCKER_STARTED_BY has $WERCKER_RESULT on branch $WERCKER_GIT_BRANCH"
+export WERCKER_GIT_COMMIT_SHORT=$(echo "$WERCKER_GIT_COMMIT" | cut -c1-7)
+export MESSAGE="<$ACTION_URL|$ACTION> for $WERCKER_APPLICATION_NAME by $WERCKER_STARTED_BY has $WERCKER_RESULT on branch $WERCKER_GIT_BRANCH (<https://$WERCKER_GIT_DOMAIN/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY/commit/$WERCKER_GIT_COMMIT|$WERCKER_GIT_COMMIT_SHORT>)"
 export FALLBACK="$ACTION for $WERCKER_APPLICATION_NAME by $WERCKER_STARTED_BY has $WERCKER_RESULT on branch $WERCKER_GIT_BRANCH"
 export COLOR="good"
 
@@ -50,9 +51,17 @@ if [ -n "$WERCKER_SLACK_NOTIFIER_CHANNEL" ]; then
     json=$json"\"channel\": \"#$WERCKER_SLACK_NOTIFIER_CHANNEL\","
 fi
 
+if [ -z "$WERCKER_SLACK_NOTIFIER_ICON_EMOJI" ]; then
+  export ICON_TYPE=icon_url
+  export ICON_VALUE=$WERCKER_SLACK_NOTIFIER_ICON_URL
+else
+  export ICON_TYPE=icon_emoji
+  export ICON_VALUE=$WERCKER_SLACK_NOTIFIER_ICON_EMOJI
+fi
+
 json=$json"
     \"username\": \"$WERCKER_SLACK_NOTIFIER_USERNAME\",
-    \"icon_url\":\"$WERCKER_SLACK_NOTIFIER_ICON_URL\",
+    \"$ICON_TYPE\":\"$ICON_VALUE\",
     \"attachments\":[
       {
         \"fallback\": \"$FALLBACK\",
