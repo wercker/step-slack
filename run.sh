@@ -24,7 +24,7 @@ fi
 # check if this event is a build or deploy
 if [ -n "$DEPLOY" ]; then
   # its a deploy!
-  export ACTION="deploy"
+  export ACTION="deploy ($WERCKER_DEPLOYTARGET_NAME)"
   export ACTION_URL=$WERCKER_DEPLOY_URL
 else
   # its a build!
@@ -46,7 +46,7 @@ fi
 json="{"
 
 # channels are optional, dont send one if it wasnt specified
-if [ -n "$WERCKER_SLACK_NOTIFIER_CHANNEL" ]; then 
+if [ -n "$WERCKER_SLACK_NOTIFIER_CHANNEL" ]; then
     json=$json"\"channel\": \"#$WERCKER_SLACK_NOTIFIER_CHANNEL\","
 fi
 
