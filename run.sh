@@ -42,6 +42,18 @@ if [ "$WERCKER_RESULT" = "failed" ]; then
   export COLOR="danger"
 fi
 
+if [ -n "$WERCKER_SLACK_NOTIFIER_CUSTOM_MESSAGE" ]; then
+  # Override message with a custom one
+  export MESSAGE=$WERCKER_SLACK_NOTIFIER_CUSTOM_MESSAGE
+  export FALLBACK=$WERCKER_SLACK_NOTIFIER_CUSTOM_MESSAGE
+fi
+
+if [ -n "$WERCKER_SLACK_NOTIFIER_CUSTOM_COLOR" ]; then
+  # Override message with a custom one
+  export COLOR=$WERCKER_SLACK_NOTIFIER_CUSTOM_COLOR
+fi
+
+
 # construct the json
 json="{"
 
