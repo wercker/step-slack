@@ -14,6 +14,8 @@ webhook first (see the Slack integrations page to set one up).
 - `notify_on` (optional) If set to `failed`, it will only notify on failed
 builds or deploys.
 - `branch` (optional) If set, it will only notify on the given branch
+- `custom_message` (optional) If set, it will override classic build/deploy status. 
+- `custom_color` (optional) If set, it will override green/danger color with custom one.
 
 
 # Example
@@ -26,6 +28,21 @@ build:
             channel: notifications
             username: myamazingbotname
             branch: master
+```
+
+If you want to post a slack message for example when the build or deploy starts, you can use 
+`custom_message` and `custom_color` variables
+
+# Example
+
+```yaml
+deploy:
+   steps:
+     - slack-notifier:
+       url: $SLACK_URL
+       channel: notifications
+       custom_message: Deploying $WERCKER_GIT_BRANCH to $WERCKER_DEPLOYTARGET_NAME ($WERCKER_DEPLOY_URL)
+       custom_color: #439fe0
 ```
 
 The `url` parameter is the [slack webhook](https://api.slack.com/incoming-webhooks) that wercker should post to.
