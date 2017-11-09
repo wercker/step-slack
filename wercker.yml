@@ -1,4 +1,4 @@
-box: wercker/default
+box: debian:stable-slim
 build:
     steps:
         - shellcheck:
@@ -7,3 +7,13 @@ build:
         - script:
             name: prepare output
             code: rm -rf $WERCKER_ROOT/.git
+
+publish:
+  steps:
+    - install-packages:
+        packages: ca-certificates
+
+    - publish-step:
+        auth_token: $STEPS_AUTH_TOKEN
+        owner: wercker
+
