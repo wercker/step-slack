@@ -10,10 +10,6 @@ build:
 
 publish:
   steps:
-    - install-packages:
-        packages: ca-certificates
-
-    - publish-step:
-        auth_token: $STEPS_AUTH_TOKEN
+    - internal/publish-step:
         owner: wercker
 
