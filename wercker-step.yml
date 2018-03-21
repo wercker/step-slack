@@ -27,3 +27,6 @@ properties:
   icon_emoji:
     type: string
     required: false
+  append_message:
+    type: string
+    required: false
