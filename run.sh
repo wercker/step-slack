@@ -43,6 +43,10 @@ if [ "$WERCKER_RESULT" = "failed" ]; then
   export COLOR="danger"
 fi
 
+if [ -n "$WERCKER_SLACK_NOTIFIER_APPEND_MESSAGE" ]; then 
+  export MESSAGE="$MESSAGE :: $WERCKER_SLACK_NOTIFIER_APPEND_MESSAGE"
+fi
+
 # construct the json
 json="{"
 
