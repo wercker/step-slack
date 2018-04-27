@@ -50,3 +50,7 @@ The MIT License (MIT)
 ## 1.0.0
 
 - Initial release
+
+## Contributing to this repository 
+
+Oracle welcomes contributions to this repository from anyone.  Please see [CONTRIBUTING](CONTRIBUTING.md) for more information. 
