@@ -27,6 +27,7 @@ build:
             channel: notifications
             username: myamazingbotname
             branch: master
+            append_message: "appending some message to the end of the wercker message!"
 ```
 
 The `url` parameter is the [slack webhook](https://api.slack.com/incoming-webhooks) that wercker should post to.
