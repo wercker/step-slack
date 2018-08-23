@@ -39,7 +39,7 @@ The MIT License (MIT)
 
 # Changelog
 
-## 1.3.0
+## 1.6.0
 
 - `$WERCKER_BUILD_URL` replaced by `$WERCKER_RUN_URL`
 - git branch is link in message
