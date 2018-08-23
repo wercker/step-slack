@@ -39,6 +39,11 @@ The MIT License (MIT)
 
 # Changelog
 
+## 1.3.0
+
+- `$WERCKER_BUILD_URL` replaced by `$WERCKER_RUN_URL`
+- git branch is link in message
+
 ## 1.2.0
 
 - added `branch` option
@@ -51,6 +56,6 @@ The MIT License (MIT)
 
 - Initial release
 
-## Contributing to this repository 
+## Contributing to this repository
 
-Oracle welcomes contributions to this repository from anyone.  Please see [CONTRIBUTING](CONTRIBUTING.md) for more information. 
+Oracle welcomes contributions to this repository from anyone.  Please see [CONTRIBUTING](CONTRIBUTING.md) for more information.
